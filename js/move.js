@@ -21,9 +21,8 @@ swiperDiv.addEventListener('touchmove', (e) => {
   const disY = moveY - startY
   let swiperX
   if (Math.abs(moveX - startX) > Math.abs(moveY - startY)) {// 水平方向上滑动
-    console.log(disX)
     if (moveX - startX < 0 && moveX - startX > -100) {
-      if (!atLeft) {
+      if (!atLeft) { 
         swiperX = disX
       }
     } else if (moveX - startX <= -100) {
@@ -41,7 +40,6 @@ swiperDiv.addEventListener('touchmove', (e) => {
 
 
 swiperDiv.addEventListener('touchend', (e) => {
-  console.log(e)
   const target = e.changedTouches[0]
   const endX = target.clientX
   const endY = target.clientY
