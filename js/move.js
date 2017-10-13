@@ -4,20 +4,13 @@ var swiperDiv = swiperWrap.querySelector('.swiperDiv')
 
 var startX
 var startY
-console.log('ss')
-// swiperDiv.ontouchstart  = function (e) {
+var atLeft = false
 
-//   console.log('afsd')
-// }
-// style="transform:translateX(-50px)"
 
 swiperDiv.addEventListener('touchstart', (e) => {
-  // console.log(e.targetTouches[0].clientX)
   const target = e.targetTouches[0]
   startX = target.clientX
   startY = target.clientY
-  console.log('startpos')
-  console.log(startX, startY)
 })
 
 swiperDiv.addEventListener('touchmove', (e) => {
@@ -30,7 +23,9 @@ swiperDiv.addEventListener('touchmove', (e) => {
   if (Math.abs(moveX - startX) > Math.abs(moveY - startY)) {// 水平方向上滑动
     console.log(disX)
     if (moveX - startX < 0 && moveX - startX > -100) {
-      swiperX = disX
+      if (!atLeft) {
+        swiperX = disX
+      }
     } else if (moveX - startX <= -100) {
       swiperX = -100
     } else {
@@ -55,8 +50,10 @@ swiperDiv.addEventListener('touchend', (e) => {
   let swiperX
   if (endX - startX < -30) {
     swiperX = -100
+    atLeft = true
   } else {
     swiperX = 0
+    atLeft = false
   }
   swiperDiv.style.transform = 'translateX(' + swiperX + 'px)'
 })
